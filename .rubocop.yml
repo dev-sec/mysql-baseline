@@ -1,5 +1,7 @@
 AllCops:
   Excludes:
+    - vendor/**
+    - metadata.rb
     - '**/Puppetfile'
 
 Documentation:
