@@ -34,102 +34,115 @@ describe service("#{service_name}") do
 end
 
 # temporarily combine config-files and remove spaces
-describe command("cat #{mysql_config_file} | tr -s [:space:]  > #{tmp_config_file}; cat #{mysql_hardening_file} | tr -s [:space:] >> #{tmp_config_file}") do
-  it { should return_exit_status 0 }
+describe "Combining configfiles"
+  describe command("cat #{mysql_config_file} | tr -s [:space:]  > #{tmp_config_file}; cat #{mysql_hardening_file} | tr -s [:space:] >> #{tmp_config_file}") do
+    it { should return_exit_status 0 }
+  end
 end
 
-# Req. 294 (keine Community-version)
-describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select version();' | tail -1") do
-  its(:stdout) { should_not match /Community/ }
-end
+describe "Checking MySQL-databases for risky entries" do
 
-# Req. 296 (version > 5)
-describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select substring(version(),1,1);' | tail -1") do
-  its(:stdout) { should match /^5/ }
-end
+  # Req. 294 (keine Community-version)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select version();' | tail -1") do
+    its(:stdout) { should_not match /Community/ }
+  end
 
-# Req. 297 (keine default-datenbanken)
-describe command("mysql -uroot -p#{ENV['mysql_password']} -s -e 'show databases like \"test\";'") do
-  its(:stdout) { should_not match /test/ }
-end
+  # Req. 296 (version > 5)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select substring(version(),1,1);' | tail -1") do
+    its(:stdout) { should match /^5/ }
+  end
 
-# Req. 298 (keine anonymous-benutzer)
-describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"\";' | tail -1") do
-  its(:stdout) { should match /^0/ }
+  # Req. 297 (keine default-datenbanken)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} -s -e 'show databases like \"test\";'") do
+    its(:stdout) { should_not match /test/ }
+  end
+
+  # Req. 298 (keine anonymous-benutzer)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"\";' | tail -1") do
+    its(:stdout) { should match /^0/ }
+  end
+
+  # Req. 300 (keine benutzerkonten ohne kennwort)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where length(password)=0 or password=\"\";' | tail -1") do
+    its(:stdout) { should match /^0/ }
+  end
+
+  # Req. 317 (no grant privileges)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where grant_priv=\"y\" and User!=\"root\" and User!=\"debian-sys-maint\";' | tail -1") do
+    its(:stdout) { should match /^0/ }
+  end
+
+  # Req. 321 (keine host-wildcards)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where host=\"%\"' | tail -1") do
+    its(:stdout) { should match /^0/ }
+  end
+
+  # Req. 322 (root-login nur von localhost)
+  describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"root\" and host not in (\"localhost\",\"127.0.0.1\",\"::1\")' | tail -1") do
+    its(:stdout) { should match /^0/ }
+  end
+
 end
 
 # Req. 299 (nur eine instanz pro server)
-describe command ("ps aux | grep mysqld | grep -v grep | wc -l") do
-  its(:stdout) { should match /^1/ }
+describe "Req. 299: check for multiple instances" do
+  describe command ("ps aux | grep mysqld | grep -v grep | wc -l") do
+    its(:stdout) { should match /^1/ }
+  end
 end
 
-# Req. 300 (keine benutzerkonten ohne kennwort)
-describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where length(password)=0 or password=\"\";' | tail -1") do
-  its(:stdout) { should match /^0/ }
+describe "Parsing configfiles for unwanted entries" do
+
+  # Req. 301 (safe-user-create = 1)
+  describe file(tmp_config_file) do
+    it { should contain 'safe-user-create' }
+  end
+
+  # Req. 302 (kein old_passwords)
+  describe file(tmp_config_file) do
+    it { should_not contain 'old_passwords' }
+  end
+
+  # Req. 305 (user = mysql)
+  describe file(tmp_config_file) do
+      its(:content) { should match(/user = mysql/) }
+  end
+
+  # Req. 307 (skip-symbolic-links = 1)
+  describe file(tmp_config_file) do
+      its(:content) { should match(/skip-symbolic-links = 1/) }
+  end
+
+  # Req. 309 (secure-file-priv muss enthalten sein)
+  describe file(tmp_config_file) do
+    it { should contain 'secure-file-priv' }
+  end
+
+  # Req. 310 (local-infile = 0)
+  describe file(tmp_config_file) do
+      its(:content) { should match(/local-infile = 0/) }
+  end
+
+  # Req. 315 (skip-show-database)
+  describe file(tmp_config_file) do
+      its(:content) { should match(/^skip-show-database/) }
+  end
+
+  # Req. 316 (skip-grant-tables)
+  describe file(tmp_config_file) do
+      it { should_not contain 'skip-grant-tables' }
+  end
+
+  # Req. 320 (kein "allow-suspicious-udfs")
+  describe file(tmp_config_file) do
+    its(:content) { should match(/allow-suspicious-udfs = 0/) }
+  end
+
 end
 
-# Req. 301 (safe-user-create = 1)
-describe file(tmp_config_file) do
-  it { should contain 'safe-user-create' }
-end
-
-# Req. 302 (kein old_passwords)
-describe file(tmp_config_file) do
-  it { should_not contain 'old_passwords' }
-end
-
-# Req. 305 (user = mysql)
-describe file(tmp_config_file) do
-    its(:content) { should match(/user = mysql/) }
-end
-
-# Req. 307 (skip-symbolic-links = 1)
-describe file(tmp_config_file) do
-    its(:content) { should match(/skip-symbolic-links = 1/) }
-end
-
-# Req. 309 (secure-file-priv muss enthalten sein)
-describe file(tmp_config_file) do
-  it { should contain 'secure-file-priv' }
-end
-
-# Req. 310 (local-infile = 0)
-describe file(tmp_config_file) do
-    its(:content) { should match(/local-infile = 0/) }
-end
-
-# Req. 315 (skip-show-database)
-describe file(tmp_config_file) do
-    its(:content) { should match(/^skip-show-database/) }
-end
-
-# Req. 316 (skip-grant-tables)
-describe file(tmp_config_file) do
-    it { should_not contain 'skip-grant-tables' }
-end
-
-# Req. 317 (no grant privileges)
-describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where grant_priv=\"y\" and User!=\"root\" and User!=\"debian-sys-maint\";' | tail -1") do
-  its(:stdout) { should match /^0/ }
-end
-
-# Req. 320 (kein "allow-suspicious-udfs")
-describe file(tmp_config_file) do
-  its(:content) { should match(/allow-suspicious-udfs = 0/) }
-end
-
-# Req. 321 (keine host-wildcards)
-describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where host=\"%\"' | tail -1") do
-  its(:stdout) { should match /^0/ }
-end
-
-# Req. 322 (root-login nur von localhost)
-describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"root\" and host not in (\"localhost\",\"127.0.0.1\",\"::1\")' | tail -1") do
-  its(:stdout) { should match /^0/ }
-end
 
 # Req. 311, 312, 313
-describe 'Mysql-data: owner, group and permissions' do
+describe 'Req. 311, 312, 313: Mysql-data owner, group and permissions' do
 
   describe file(mysql_data_path) do
     it { should be_directory }
