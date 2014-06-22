@@ -3,6 +3,8 @@ AllCops:
     - vendor/**
     - metadata.rb
     - '**/Puppetfile'
+    - Puppetfile
+
 
 Documentation:
   Enabled: false
