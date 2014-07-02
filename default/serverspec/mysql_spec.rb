@@ -87,7 +87,7 @@ end
 # Req. 299 (nur eine instanz pro server)
 describe 'Req. 299: check for multiple instances' do
   describe command('ps aux | grep mysqld | grep -v grep | wc -l') do
-    its(:stdout) { should match(/^1/) }
+    its(:stdout) { should match(/^1$/) }
   end
 end
 
