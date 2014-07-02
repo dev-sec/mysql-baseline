@@ -8,6 +8,12 @@ RSpec.configure do |c|
   c.filter_run_excluding skipOn: backend(Serverspec::Commands::Base).check_os[:family]
 end
 
+RSpec::Matchers.define :match_key_value do |key, value|
+  match do |actual|
+    actual =~ /^\s*?#{key}\s*?=\s*?#{value}/
+  end
+end
+
 # set OS-dependent filenames and paths
 case backend.check_os[:family]
 when 'Ubuntu'
@@ -95,22 +101,22 @@ describe 'Parsing configfiles for unwanted entries' do
 
   # Req. 301 (safe-user-create = 1)
   describe file(tmp_config_file) do
-    it { should contain 'safe-user-create' }
+    its(:content) { should match_key_value('safe-user-create', '1') }
   end
 
   # Req. 302 (kein old_passwords)
   describe file(tmp_config_file) do
-    it { should_not contain 'old_passwords' }
+    its(:content) { should_not match_key_value('old_passwords', '1') }
   end
 
   # Req. 305 (user = mysql)
   describe file(tmp_config_file) do
-    its(:content) { should match(/user = mysql/) }
+    its(:content) { should match_key_value('user', 'mysql') }
   end
 
   # Req. 307 (skip-symbolic-links = 1)
   describe file(tmp_config_file) do
-    its(:content) { should match(/skip-symbolic-links = 1/) }
+    its(:content) { should match_key_value('skip-symbolic-links', '1') }
   end
 
   # Req. 309 (secure-file-priv muss enthalten sein)
@@ -120,7 +126,7 @@ describe 'Parsing configfiles for unwanted entries' do
 
   # Req. 310 (local-infile = 0)
   describe file(tmp_config_file) do
-    its(:content) { should match(/local-infile = 0/) }
+    its(:content) { should match_key_value('local-infile', '0') }
   end
 
   # Req. 315 (skip-show-database)
@@ -135,7 +141,7 @@ describe 'Parsing configfiles for unwanted entries' do
 
   # Req. 320 (kein "allow-suspicious-udfs")
   describe file(tmp_config_file) do
-    its(:content) { should match(/allow-suspicious-udfs = 0/) }
+    its(:content) { should match_key_value('allow-suspicious-udfs', '0') }
   end
 
 end
