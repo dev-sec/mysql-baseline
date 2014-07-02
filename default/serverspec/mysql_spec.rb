@@ -121,7 +121,7 @@ describe 'Parsing configfiles for unwanted entries' do
 
   # Req. 309 (secure-file-priv)
   describe file(tmp_config_file) do
-    it { should contain 'secure-file-priv' }
+    its(:content) { should match(/^\s*?secure-file-priv/) }
   end
 
   # Req. 310 (local-infile = 0)
