@@ -104,7 +104,7 @@ describe 'Parsing configfiles for unwanted entries' do
     its(:content) { should match_key_value('safe-user-create', '1') }
   end
 
-  # Req. 302 (kein old_passwords)
+  # Req. 302 (no old_passwords)
   describe file(tmp_config_file) do
     its(:content) { should_not match_key_value('old_passwords', '1') }
   end
@@ -119,7 +119,7 @@ describe 'Parsing configfiles for unwanted entries' do
     its(:content) { should match_key_value('skip-symbolic-links', '1') }
   end
 
-  # Req. 309 (secure-file-priv muss enthalten sein)
+  # Req. 309 (secure-file-priv)
   describe file(tmp_config_file) do
     it { should contain 'secure-file-priv' }
   end
