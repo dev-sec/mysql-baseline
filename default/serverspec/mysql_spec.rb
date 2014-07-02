@@ -136,7 +136,7 @@ describe 'Parsing configfiles for unwanted entries' do
 
   # Req. 316 (skip-grant-tables)
   describe file(tmp_config_file) do
-    it { should_not contain 'skip-grant-tables' }
+    its(:content) { should match(/^\s*?skip-grant-tables/) }
   end
 
   # Req. 320 (kein "allow-suspicious-udfs")
