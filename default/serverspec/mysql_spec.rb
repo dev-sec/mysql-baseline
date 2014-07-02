@@ -131,7 +131,7 @@ describe 'Parsing configfiles for unwanted entries' do
 
   # Req. 315 (skip-show-database)
   describe file(tmp_config_file) do
-    its(:content) { should match(/^skip-show-database/) }
+    its(:content) { should match(/^\s*?skip-show-database/) }
   end
 
   # Req. 316 (skip-grant-tables)
