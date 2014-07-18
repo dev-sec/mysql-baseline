@@ -14,21 +14,27 @@ RSpec::Matchers.define :match_key_value do |key, value|
   end
 end
 
+mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
+
 # set OS-dependent filenames and paths
 case backend.check_os[:family]
-when 'Ubuntu'
+when 'Ubuntu', 'Debian'
   mysql_config_file = '/etc/mysql/my.cnf'
-  mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
   mysql_config_path = '/etc/mysql/'
   mysql_data_path = '/var/lib/mysql/'
   mysql_log_path = '/var/log/'
+  mysql_log_file = 'mysql.log'
+  mysql_log_group = 'adm'
+  os[:release] == '14.04' ? mysql_log_dir_group = 'syslog' : mysql_log_dir_group = 'root'
   service_name = 'mysql'
 when 'RedHat', 'Fedora'
   mysql_config_file = '/etc/my.cnf'
-  mysql_hardening_file = '/etc/hardening.cnf'
   mysql_config_path = '/etc/'
   mysql_data_path = '/var/lib/mysql/'
   mysql_log_path = '/var/log/'
+  mysql_log_file = 'mysqld.log'
+  mysql_log_group = 'mysql'
+  mysql_log_dir_group = 'root'
   service_name = 'mysqld'
 end
 
@@ -92,7 +98,7 @@ end
 
 # Req. 299 (nur eine instanz pro server)
 describe 'Req. 299: check for multiple instances' do
-  describe command('ps aux | grep mysqld | grep -v grep | wc -l') do
+  describe command('ps aux | grep mysqld | egrep -v "grep|mysqld_safe|logger" | wc -l') do
     its(:stdout) { should match(/^1$/) }
   end
 end
@@ -136,7 +142,7 @@ describe 'Parsing configfiles for unwanted entries' do
 
   # Req. 316 (skip-grant-tables)
   describe file(tmp_config_file) do
-    its(:content) { should match(/^\s*?skip-grant-tables/) }
+    its(:content) { should_not match(/^\s*?skip-grant-tables/) }
   end
 
   # Req. 320 (kein "allow-suspicious-udfs")
@@ -151,9 +157,6 @@ describe 'Req. 311, 312, 313: Mysql-data owner, group and permissions' do
 
   describe file(mysql_data_path) do
     it { should be_directory }
-  end
-
-  describe file(mysql_data_path) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'mysql' }
   end
@@ -161,17 +164,19 @@ describe 'Req. 311, 312, 313: Mysql-data owner, group and permissions' do
   describe file("#{mysql_data_path}/ibdata1") do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'mysql' }
+    it { should_not be_readable.by('others') }
   end
 
   describe file(mysql_log_path) do
     it { should be_directory }
     it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into mysql_log_dir_group }
   end
 
-  describe file("#{mysql_log_path}/mysql.log") do
+  describe file("#{mysql_log_path}/#{mysql_log_file}") do
     it { should be_owned_by 'mysql' }
-    it { should be_grouped_into 'adm' }
+    it { should be_grouped_into mysql_log_group }
+    it { should_not be_readable.by('others') }
   end
 
 end
@@ -190,6 +195,13 @@ describe 'Mysql-config: owner, group and permissions' do
   describe file(mysql_config_file) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'mysql' }
+    it { should_not be_readable.by('others') }
+  end
+
+  describe file(mysql_hardening_file) do
+    it { should be_owned_by 'mysql' }
+    it { should be_grouped_into 'root' }
+    it { should_not be_readable.by('others') }
   end
 
 end
