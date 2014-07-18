@@ -157,9 +157,6 @@ describe 'Req. 311, 312, 313: Mysql-data owner, group and permissions' do
 
   describe file(mysql_data_path) do
     it { should be_directory }
-  end
-
-  describe file(mysql_data_path) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'mysql' }
   end
