@@ -8,7 +8,6 @@
     "default_attributes" : {
       "mysql": {
         "server_root_password": "iloverandompasswordsbutthiswilldo",
-        "server_repl_password": "iloverandompasswordsbutthiswilldo",
         "server_debian_password": "iloverandompasswordsbutthiswilldo"
       }
     },
