@@ -18,7 +18,7 @@ mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 
 # set OS-dependent filenames and paths
 case backend.check_os[:family]
-when 'Ubuntu'
+when 'Ubuntu', 'Debian'
   mysql_config_file = '/etc/mysql/my.cnf'
   mysql_config_path = '/etc/mysql/'
   mysql_data_path = '/var/lib/mysql/'
