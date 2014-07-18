@@ -34,6 +34,7 @@ when 'RedHat', 'Fedora'
   mysql_log_path = '/var/log/'
   mysql_log_file = 'mysqld.log'
   mysql_log_group = 'mysql'
+  mysql_log_dir_group = 'root'
   service_name = 'mysqld'
 end
 
