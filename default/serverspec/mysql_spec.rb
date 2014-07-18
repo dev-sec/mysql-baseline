@@ -169,7 +169,7 @@ describe 'Req. 311, 312, 313: Mysql-data owner, group and permissions' do
   describe file(mysql_log_path) do
     it { should be_directory }
     it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into mysql_log_dir_group }
   end
 
   describe file("#{mysql_log_path}/mysql.log") do
