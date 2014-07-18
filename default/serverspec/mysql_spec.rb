@@ -20,7 +20,6 @@ mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 case backend.check_os[:family]
 when 'Ubuntu'
   mysql_config_file = '/etc/mysql/my.cnf'
-  mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
   mysql_config_path = '/etc/mysql/'
   mysql_data_path = '/var/lib/mysql/'
   mysql_log_path = '/var/log/'
