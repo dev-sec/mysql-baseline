@@ -164,6 +164,7 @@ describe 'Req. 311, 312, 313: Mysql-data owner, group and permissions' do
   describe file("#{mysql_data_path}/ibdata1") do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'mysql' }
+    it { should_not be_readable.by('others') }
   end
 
   describe file(mysql_log_path) do
@@ -175,6 +176,7 @@ describe 'Req. 311, 312, 313: Mysql-data owner, group and permissions' do
   describe file("#{mysql_log_path}/#{mysql_log_file}") do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into mysql_log_group }
+    it { should_not be_readable.by('others') }
   end
 
 end
@@ -193,6 +195,7 @@ describe 'Mysql-config: owner, group and permissions' do
   describe file(mysql_config_file) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'mysql' }
+    it { should_not be_readable.by('others') }
   end
 
 end
