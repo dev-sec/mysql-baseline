@@ -14,6 +14,8 @@ RSpec::Matchers.define :match_key_value do |key, value|
   end
 end
 
+mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
+
 # set OS-dependent filenames and paths
 case backend.check_os[:family]
 when 'Ubuntu'
