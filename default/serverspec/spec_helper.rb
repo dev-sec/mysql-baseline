@@ -53,6 +53,10 @@ if ENV['STANDALONE_SPEC']
       exit 1
     end
 
+    # @see https://github.com/serverspec/serverspec/issues/267
+    ENV['LANG'] = 'C'
+    options[:send_env] = options[:send_env] | [/^LANG$/]
+
     c.host  = ENV['TARGET_HOST']
     options.merge(Net::SSH::Config.for(c.host))
     c.ssh   = Net::SSH.start(c.host, user, options)
@@ -68,6 +72,10 @@ else
   include Serverspec::Helper::DetectOS
 
   RSpec.configure do |c|
+
+    # @see https://github.com/serverspec/serverspec/issues/267
+    ENV['LANG'] = 'C'
+
     c.before :all do
       c.os = backend(Serverspec::Commands::Base).check_os
     end
