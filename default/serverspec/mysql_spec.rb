@@ -130,6 +130,11 @@ describe 'Parsing configfiles for unwanted entries' do
     its(:content) { should_not match_key_value('old_passwords', '1') }
   end
 
+  # SEC: Req 3.24-8 (secure-auth = 1)
+  describe file(tmp_config_file) do
+    its(:content) { should_not match_key_value('secure-auth', '1') }
+  end
+
   # SEC: Req 3.24-11 (user = mysql)
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('user', 'mysql') }
