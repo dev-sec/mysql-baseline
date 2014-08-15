@@ -213,8 +213,8 @@ describe 'Mysql-config: owner, group and permissions' do
   end
 
   describe file(mysql_config_file) do
-    it { should be_owned_by 'mysql' }
-    it { should be_grouped_into 'mysql' }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'root' }
     it { should_not be_readable.by('others') }
   end
 
