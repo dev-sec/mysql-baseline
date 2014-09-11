@@ -185,6 +185,8 @@ describe 'SEC: Req 3.24-17, SEC: Req 3.24-18, SEC: Req 3.24-19: Mysql-data owner
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'mysql' }
     it { should_not be_readable.by('others') }
+    it { should_not be_writable.by('others') }
+    it { should_not be_executable.by('others') }
   end
 
   describe file(mysql_log_path) do
@@ -197,6 +199,8 @@ describe 'SEC: Req 3.24-17, SEC: Req 3.24-18, SEC: Req 3.24-19: Mysql-data owner
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into mysql_log_group }
     it { should_not be_readable.by('others') }
+    it { should_not be_writable.by('others') }
+    it { should_not be_executable.by('others') }
   end
 
 end
