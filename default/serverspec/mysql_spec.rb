@@ -233,3 +233,12 @@ describe 'Mysql-config: owner, group and permissions' do
   end
 
 end
+
+describe 'Mysql environment' do
+
+  
+  describe command('env') do
+    it { should_not return_stdout /^MYSQL_PWD=/ }
+  end
+
+end
