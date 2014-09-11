@@ -112,7 +112,7 @@ describe 'Checking MySQL-databases for risky entries' do
 end
 
 # SEC: Req 3.24-4 (nur eine instanz pro server)
-describe 'Req. 299: check for multiple instances' do
+describe 'Check for multiple instances' do
   describe command('ps aux | grep mysqld | egrep -v "grep|mysqld_safe|logger" | wc -l') do
     its(:stdout) { should match(/^1$/) }
   end
