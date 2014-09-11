@@ -173,7 +173,7 @@ describe 'Parsing configfiles for unwanted entries' do
 end
 
 # DTAG SEC: Req 3.24-17, SEC: Req 3.24-18, SEC: Req 3.24-19
-describe 'SEC: Req 3.24-17, SEC: Req 3.24-18, SEC: Req 3.24-19: Mysql-data owner, group and permissions' do
+describe 'Mysql-data owner, group and permissions' do
 
   describe file(mysql_data_path) do
     it { should be_directory }
