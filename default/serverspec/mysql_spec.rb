@@ -69,50 +69,50 @@ end
 
 describe 'Checking MySQL-databases for risky entries' do
 
-  # SEC: Req 3.24-1 (keine Community-version)
+  # DTAG SEC: Req 3.24-1 (keine Community-version)
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select version();' | tail -1") do
     its(:stdout) { should_not match(/Community/) }
   end
 
-  # SEC: Req 3.24-1 (version > 5)
+  # DTAG SEC: Req 3.24-1 (version > 5)
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select substring(version(),1,1);' | tail -1") do
     its(:stdout) { should match(/^5/) }
   end
 
-  # SEC: Req 3.24-2 (keine default-datenbanken)
+  # DTAG SEC: Req 3.24-2 (keine default-datenbanken)
   describe command("mysql -uroot -p#{ENV['mysql_password']} -s -e 'show databases like \"test\";'") do
     its(:stdout) { should_not match(/test/) }
   end
 
-  # SEC: Req 3.24-3 (keine anonymous-benutzer)
+  # DTAG SEC: Req 3.24-3 (keine anonymous-benutzer)
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"\";' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  # SEC: Req 3.24-5 (keine benutzerkonten ohne kennwort)
+  # DTAG SEC: Req 3.24-5 (keine benutzerkonten ohne kennwort)
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where length(password)=0 or password=\"\";' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  # SEC: Req 3.24-23 (no grant privileges)
+  # DTAG SEC: Req 3.24-23 (no grant privileges)
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where grant_priv=\"y\" and User!=\"root\" and User!=\"debian-sys-maint\";' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  # SEC: Req 3.24-27 (keine host-wildcards)
+  # DTAG SEC: Req 3.24-27 (keine host-wildcards)
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where host=\"%\"' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  # SEC: Req 3.24-28 (root-login nur von localhost)
+  # DTAG SEC: Req 3.24-28 (root-login nur von localhost)
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"root\" and host not in (\"localhost\",\"127.0.0.1\",\"::1\")' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
 end
 
-# SEC: Req 3.24-4 (nur eine instanz pro server)
-describe 'Req. 299: check for multiple instances' do
+# DTAG SEC: Req 3.24-4 (nur eine instanz pro server)
+describe 'Check for multiple instances' do
   describe command('ps aux | grep mysqld | egrep -v "grep|mysqld_safe|logger" | wc -l') do
     its(:stdout) { should match(/^1$/) }
   end
@@ -120,60 +120,60 @@ end
 
 describe 'Parsing configfiles for unwanted entries' do
 
-  # SEC: Req 3.24-6 (safe-user-create = 1)
+  # DTAG SEC: Req 3.24-6 (safe-user-create = 1)
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('safe-user-create', '1') }
   end
 
-  # SEC: Req 3.24-7 (no old_passwords)
+  # DTAG SEC: Req 3.24-7 (no old_passwords)
   describe file(tmp_config_file) do
     its(:content) { should_not match_key_value('old_passwords', '1') }
   end
 
-  # SEC: Req 3.24-8 (secure-auth = 1)
+  # DTAG SEC: Req 3.24-8 (secure-auth = 1)
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('secure-auth', '1') }
   end
 
-  # SEC: Req 3.24-11 (user = mysql)
+  # DTAG SEC: Req 3.24-11 (user = mysql)
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('user', 'mysql') }
   end
 
-  # SEC: Req 3.24-13 (skip-symbolic-links = 1)
+  # DTAG SEC: Req 3.24-13 (skip-symbolic-links = 1)
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('skip-symbolic-links', '1') }
   end
 
-  # SEC: Req 3.24-15 (secure-file-priv)
+  # DTAG SEC: Req 3.24-15 (secure-file-priv)
   describe file(tmp_config_file) do
     its(:content) { should match(/^\s*?secure-file-priv/) }
   end
 
-  # SEC: Req 3.24-16 (local-infile = 0)
+  # DTAG SEC: Req 3.24-16 (local-infile = 0)
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('local-infile', '0') }
   end
 
-  # SEC: Req 3.24-21 (skip-show-database)
+  # DTAG SEC: Req 3.24-21 (skip-show-database)
   describe file(tmp_config_file) do
     its(:content) { should match(/^\s*?skip-show-database/) }
   end
 
-  # SEC: Req 3.24-22 (skip-grant-tables)
+  # DTAG SEC: Req 3.24-22 (skip-grant-tables)
   describe file(tmp_config_file) do
     its(:content) { should_not match(/^\s*?skip-grant-tables/) }
   end
 
-  # SEC: Req 3.24-26 (kein "allow-suspicious-udfs")
+  # DTAG SEC: Req 3.24-26 (kein "allow-suspicious-udfs")
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('allow-suspicious-udfs', '0') }
   end
 
 end
 
-# SEC: Req 3.24-17, SEC: Req 3.24-18, SEC: Req 3.24-19
-describe 'SEC: Req 3.24-17, SEC: Req 3.24-18, SEC: Req 3.24-19: Mysql-data owner, group and permissions' do
+# DTAG SEC: Req 3.24-17, SEC: Req 3.24-18, SEC: Req 3.24-19
+describe 'Mysql-data owner, group and permissions' do
 
   describe file(mysql_data_path) do
     it { should be_directory }
@@ -230,6 +230,15 @@ describe 'Mysql-config: owner, group and permissions' do
       it { should be_grouped_into 'root' }
       it { should_not be_readable.by('others') }
     end
+  end
+
+end
+
+describe 'Mysql environment' do
+
+  # DTAG SEC: 3.24-9
+  describe command('env') do
+    it { should_not return_stdout(/^MYSQL_PWD=/) }
   end
 
 end
