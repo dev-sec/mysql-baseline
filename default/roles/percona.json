@@ -1,0 +1,23 @@
+{
+    "name": "percona",
+    "default_attributes": { },
+    "override_attributes": { },
+    "json_class": "Chef::Role",
+    "description": "Percona Hardened Server Test Role",
+    "chef_type": "role",
+    "default_attributes" : {
+      "percona" : {
+        "server": {
+          "jemalloc": true,
+          "debian_password": "iloverandompasswordsbutthiswilldo",
+          "root_password": "iloverandompasswordsbutthiswilldo"
+        }
+      }
+    },
+    "run_list": [
+        "recipe[chef-solo-search]",
+        "recipe[apt]",
+        "recipe[percona::server]",
+        "recipe[percona-hardening]"
+    ]
+}
