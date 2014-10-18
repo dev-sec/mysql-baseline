@@ -59,7 +59,7 @@ end
 # temporarily combine config-files and remove spaces
 describe 'Combining configfiles' do
   describe command("cat #{mysql_config_file} | tr -s [:space:]  > #{tmp_config_file}; cat #{mysql_hardening_file} | tr -s [:space:] >> #{tmp_config_file}") do
-    it { should return_exit_status 0 }
+    its(:exit_status) { should eq 0 }
   end
 end
 
@@ -220,7 +220,7 @@ describe 'Mysql-config: owner, group and permissions' do
 
   # test this only if we have a mysql_hardening_file
 
-  if command("ls #{mysql_hardening_file}").return_exit_status?(0)
+  if command("ls #{mysql_hardening_file}").exit_status == 0
     describe file(mysql_hardening_file) do
       it { should be_owned_by 'mysql' }
       it { should be_grouped_into 'root' }
