@@ -28,8 +28,8 @@ end
 mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 
 # set OS-dependent filenames and paths
-case backend.check_os[:family]
-when 'Ubuntu', 'Debian'
+case os[:family]
+when 'debian'
   mysql_config_file = '/etc/mysql/my.cnf'
   mysql_config_path = '/etc/mysql/'
   mysql_data_path = '/var/lib/mysql/'
@@ -38,7 +38,7 @@ when 'Ubuntu', 'Debian'
   mysql_log_group = 'adm'
   os[:release] == '14.04' ? mysql_log_dir_group = 'syslog' : mysql_log_dir_group = 'root'
   service_name = 'mysql'
-when 'RedHat', 'Fedora'
+when 'redhat'
   mysql_config_file = '/etc/my.cnf'
   mysql_config_path = '/etc/'
   mysql_data_path = '/var/lib/mysql/'
