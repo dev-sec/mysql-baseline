@@ -220,7 +220,7 @@ describe 'Mysql-config: owner, group and permissions' do
 
   # test this only if we have a mysql_hardening_file
 
-  if command("ls #{mysql_hardening_file}").return_exit_status?(0)
+  if command("ls #{mysql_hardening_file}").exit_status == 0
     describe file(mysql_hardening_file) do
       it { should be_owned_by 'mysql' }
       it { should be_grouped_into 'root' }
