@@ -22,9 +22,7 @@ if ENV['STANDALONE_SPEC']
   require 'net/ssh'
   require 'highline/import'
 
-  include Serverspec::Helper::Ssh
-  include Serverspec::Helper::Exec
-  include Serverspec::Helper::DetectOS
+  set :backend, :ssh
 
   RSpec.configure do |c|
 
@@ -53,10 +51,6 @@ if ENV['STANDALONE_SPEC']
       exit 1
     end
 
-    # @see https://github.com/serverspec/serverspec/issues/267
-    ENV['LANG'] = 'C'
-    options[:send_env] = options[:send_env] | [/^LANG$/]
-
     c.host  = ENV['TARGET_HOST']
     options.merge(Net::SSH::Config.for(c.host))
     c.ssh   = Net::SSH.start(c.host, user, options)
@@ -66,18 +60,12 @@ if ENV['STANDALONE_SPEC']
 
 else
   require 'serverspec'
-  require 'pathname'
 
-  include Serverspec::Helper::Exec
-  include Serverspec::Helper::DetectOS
+  set :backend, :exec
 
   RSpec.configure do |c|
-
-    # @see https://github.com/serverspec/serverspec/issues/267
-    ENV['LANG'] = 'C'
-
     c.before :all do
-      c.os = backend(Serverspec::Commands::Base).check_os
+      c.path = '/sbin:/usr/sbin'
     end
   end
 end
