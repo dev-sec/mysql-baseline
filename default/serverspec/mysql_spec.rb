@@ -19,10 +19,6 @@ require 'spec_helper'
 
 ENV['mysql_password'] = 'iloverandompasswordsbutthiswilldo'
 
-RSpec.configure do |c|
-  c.filter_run_excluding skipOn: backend(Serverspec::Commands::Base).check_os[:family]
-end
-
 RSpec::Matchers.define :match_key_value do |key, value|
   match do |actual|
     actual =~ /^\s*?#{key}\s*?=\s*?#{value}/
@@ -32,8 +28,8 @@ end
 mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 
 # set OS-dependent filenames and paths
-case backend.check_os[:family]
-when 'Ubuntu', 'Debian'
+case os[:family]
+when 'ubuntu', 'debian'
   mysql_config_file = '/etc/mysql/my.cnf'
   mysql_config_path = '/etc/mysql/'
   mysql_data_path = '/var/lib/mysql/'
@@ -42,7 +38,7 @@ when 'Ubuntu', 'Debian'
   mysql_log_group = 'adm'
   os[:release] == '14.04' ? mysql_log_dir_group = 'syslog' : mysql_log_dir_group = 'root'
   service_name = 'mysql'
-when 'RedHat', 'Fedora'
+when 'redhat', 'fedora'
   mysql_config_file = '/etc/my.cnf'
   mysql_config_path = '/etc/'
   mysql_data_path = '/var/lib/mysql/'
@@ -63,7 +59,7 @@ end
 # temporarily combine config-files and remove spaces
 describe 'Combining configfiles' do
   describe command("cat #{mysql_config_file} | tr -s [:space:]  > #{tmp_config_file}; cat #{mysql_hardening_file} | tr -s [:space:] >> #{tmp_config_file}") do
-    it { should return_exit_status 0 }
+    its(:exit_status) { should eq 0 }
   end
 end
 
@@ -224,7 +220,7 @@ describe 'Mysql-config: owner, group and permissions' do
 
   # test this only if we have a mysql_hardening_file
 
-  if command("ls #{mysql_hardening_file}").return_exit_status?(0)
+  if command("ls #{mysql_hardening_file}").exit_status == 0
     describe file(mysql_hardening_file) do
       it { should be_owned_by 'mysql' }
       it { should be_grouped_into 'root' }
@@ -238,7 +234,7 @@ describe 'Mysql environment' do
 
   
   describe command('env') do
-    it { should_not return_stdout(/^MYSQL_PWD=/) }
+    its(:stdout) { should_not match(/^MYSQL_PWD=/) }
   end
 
 end
