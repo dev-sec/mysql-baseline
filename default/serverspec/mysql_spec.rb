@@ -49,7 +49,7 @@ when 'redhat', 'fedora'
   service_name = 'mysqld'
 end
 
-tmp_config_file = '/tmp/my.cnf'
+tmp_config_file = '/root/tmp-my.cnf'
 
 describe service("#{service_name}") do
   it { should be_enabled }
