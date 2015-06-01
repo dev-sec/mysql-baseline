@@ -3,8 +3,8 @@ tests-mysql-hardening
 
 This are the integration tests for the projects
 
-- https://github.com/TelekomLabs/puppet-mysql-hardening
-- https://github.com/TelekomLabs/chef-mysql-hardening
+- https://github.com/hardening-io/puppet-mysql-hardening
+- https://github.com/hardening-io/chef-mysql-hardening
 
 they start at `integration` level
 
