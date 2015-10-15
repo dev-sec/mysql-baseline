@@ -64,49 +64,38 @@ describe 'Combining configfiles' do
 end
 
 describe 'Checking MySQL-databases for risky entries' do
-
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select version();' | tail -1") do
     its(:stdout) { should_not match(/Community/) }
   end
 
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select substring(version(),1,1);' | tail -1") do
     its(:stdout) { should match(/^5/) }
   end
 
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} -s -e 'show databases like \"test\";'") do
     its(:stdout) { should_not match(/test/) }
   end
 
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"\";' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where length(password)=0 or password=\"\";' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where grant_priv=\"y\" and User!=\"root\" and User!=\"debian-sys-maint\";' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where host=\"%\"' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
 
-  
   describe command("mysql -uroot -p#{ENV['mysql_password']} mysql -s -e 'select count(*) from mysql.user where user=\"root\" and host not in (\"localhost\",\"127.0.0.1\",\"::1\")' | tail -1") do
     its(:stdout) { should match(/^0/) }
   end
-
 end
-
 
 describe 'Check for multiple instances' do
   describe command('ps aux | grep mysqld | egrep -v "grep|mysqld_safe|logger" | wc -l') do
@@ -115,62 +104,21 @@ describe 'Check for multiple instances' do
 end
 
 describe 'Parsing configfiles for unwanted entries' do
-
-  
   describe file(tmp_config_file) do
     its(:content) { should match_key_value('safe-user-create', '1') }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should_not match_key_value('old_passwords', '1') }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should match_key_value('secure-auth', '1') }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should match_key_value('user', 'mysql') }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should match_key_value('skip-symbolic-links', '1') }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should match(/^\s*?secure-file-priv/) }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should match_key_value('local-infile', '0') }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should match(/^\s*?skip-show-database/) }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should_not match(/^\s*?skip-grant-tables/) }
-  end
-
-  
-  describe file(tmp_config_file) do
     its(:content) { should match_key_value('allow-suspicious-udfs', '0') }
   end
-
 end
 
-
 describe 'Mysql-data owner, group and permissions' do
-
   describe file(mysql_data_path) do
     it { should be_directory }
     it { should be_owned_by 'mysql' }
@@ -198,28 +146,19 @@ describe 'Mysql-data owner, group and permissions' do
     it { should_not be_writable.by('others') }
     it { should_not be_executable.by('others') }
   end
-
 end
 
 describe 'Mysql-config: owner, group and permissions' do
-
   describe file(mysql_config_path) do
     it { should be_directory }
-  end
-
-  describe file(mysql_config_path) do
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
-  end
-
-  describe file(mysql_config_file) do
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
     it { should_not be_readable.by('others') }
   end
 
   # test this only if we have a mysql_hardening_file
-
   if command("ls #{mysql_hardening_file}").exit_status == 0
     describe file(mysql_hardening_file) do
       it { should be_owned_by 'mysql' }
@@ -227,14 +166,10 @@ describe 'Mysql-config: owner, group and permissions' do
       it { should_not be_readable.by('others') }
     end
   end
-
 end
 
 describe 'Mysql environment' do
-
-  
   describe command('env') do
     its(:stdout) { should_not match(/^MYSQL_PWD=/) }
   end
-
 end
