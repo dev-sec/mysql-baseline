@@ -2,5 +2,5 @@
 - name: wrapper playbook for kitchen testing "ansible-mysql-hardening"
   hosts: localhost
   roles:
-    - zufallsheld.mysql
+    - rndmh3ro.mysql
     - ansible-mysql-hardening
