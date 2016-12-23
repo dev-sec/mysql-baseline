@@ -23,16 +23,17 @@ mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 # set OS-dependent filenames and paths
 case os[:family]
 when 'ubuntu', 'debian'
-  mysql_config_file = '/etc/mysql/my.cnf'
+  mysql_config_file = '/etc/mysql/my.cnf' # rubocop:disable Lint/UselessAssignment
   mysql_config_path = '/etc/mysql/'
   mysql_data_path = '/var/lib/mysql/'
   mysql_log_path = '/var/log/'
   mysql_log_file = 'mysql.log'
   mysql_log_group = 'adm'
-  os[:release] == '14.04' ? mysql_log_dir_group = 'syslog' : mysql_log_dir_group = 'root'
+  mysql_log_dir_group = 'root'
+  mysql_log_dir_group = 'syslog' if os[:release] == '14.04'
   service_name = 'mysql'
 when 'redhat', 'fedora'
-  mysql_config_file = '/etc/my.cnf'
+  mysql_config_file = '/etc/my.cnf' # rubocop:disable Lint/UselessAssignment
   mysql_config_path = '/etc/'
   mysql_data_path = '/var/lib/mysql/'
   mysql_log_path = '/var/log/'
@@ -42,7 +43,7 @@ when 'redhat', 'fedora'
   service_name = 'mysqld'
 end
 
-describe service("#{service_name}") do
+describe service(service_name) do
   it { should be_enabled }
   it { should be_running }
 end
@@ -88,15 +89,15 @@ end
 # Parsing configfiles for unwanted entries
 describe mysql_conf.params('mysqld') do
   its('safe-user-create') { should cmp 1 }
-  its('old_passwords') { should_not cmp 1  }
-  its('secure-auth') { should cmp 1  }
+  its('old_passwords') { should_not cmp 1 }
+  its('secure-auth') { should cmp 1 }
   its('user') { should cmp 'mysql' }
-  its('skip-symbolic-links') { should cmp 1  }
+  its('skip-symbolic-links') { should cmp 1 }
   its('secure-file-priv') { should_not eq nil }
-  its('local-infile') { should cmp 0  }
+  its('local-infile') { should cmp 0 }
   its('skip-show-database') { should eq '' }
   its('skip-grant-tables') { should eq nil }
-  its('allow-suspicious-udfs') { should cmp 0  }
+  its('allow-suspicious-udfs') { should cmp 0 }
 end
 
 # binding.pry
@@ -140,14 +141,13 @@ describe file(mysql_config_path) do
 end
 
 # test this only if we have a mysql_hardening_file
-if command("ls #{mysql_hardening_file}").exit_status == 0
+if command("ls #{mysql_hardening_file}").exit_status.zero?
   describe file(mysql_hardening_file) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into 'root' }
     it { should_not be_readable.by('others') }
   end
 end
-
 
 # 'Mysql environment'
 describe command('env') do
