@@ -23,8 +23,8 @@ mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 # set OS-dependent filenames and paths
 case os[:family]
 when 'ubuntu', 'debian'
-  mysql_config_file = '/etc/mysql/my.cnf' # rubocop:disable Lint/UselessAssignment
   mysql_config_path = '/etc/mysql/'
+  mysql_config_file = mysql_config_path + 'my.cnf'
   mysql_data_path = '/var/lib/mysql/'
   mysql_log_path = '/var/log/'
   mysql_log_file = 'mysql.log'
@@ -33,8 +33,8 @@ when 'ubuntu', 'debian'
   mysql_log_dir_group = 'syslog' if os[:release] == '14.04'
   service_name = 'mysql'
 when 'redhat', 'fedora'
-  mysql_config_file = '/etc/my.cnf' # rubocop:disable Lint/UselessAssignment
   mysql_config_path = '/etc/'
+  mysql_config_file = mysql_config_path + 'my.cnf'
   mysql_data_path = '/var/lib/mysql/'
   mysql_log_path = '/var/log/'
   mysql_log_file = 'mysqld.log'
@@ -131,8 +131,8 @@ describe file("#{mysql_log_path}/#{mysql_log_file}") do
   it { should_not be_executable.by('others') }
 end
 
-describe file(mysql_config_path) do
-  it { should be_directory }
+describe file(mysql_config_file) do
+  it { should be_file }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
   it { should be_owned_by 'root' }
