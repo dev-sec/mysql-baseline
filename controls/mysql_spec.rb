@@ -135,15 +135,13 @@ describe file(mysql_config_file) do
   it { should be_file }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into 'root' }
   it { should_not be_readable.by('others') }
 end
 
 # test this only if we have a mysql_hardening_file
 if command("ls #{mysql_hardening_file}").exit_status.zero?
   describe file(mysql_hardening_file) do
-    it { should be_owned_by 'mysql' }
+    it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
     it { should_not be_readable.by('others') }
   end
