@@ -41,6 +41,7 @@ when 'redhat', 'fedora'
   mysql_log_group = 'mysql'
   mysql_log_dir_group = 'root'
   service_name = 'mysqld'
+  service_name = 'mariadb' if os[:release] >= '7'
 end
 
 describe service(service_name) do
