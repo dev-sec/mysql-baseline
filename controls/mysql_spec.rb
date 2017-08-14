@@ -118,12 +118,6 @@ describe file("#{mysql_data_path}/ibdata1") do
   it { should_not be_executable.by('others') }
 end
 
-describe file(mysql_log_path) do
-  it { should be_directory }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into mysql_log_dir_group }
-end
-
 describe file("#{mysql_log_path}/#{mysql_log_file}") do
   it { should be_owned_by 'mysql' }
   it { should be_grouped_into mysql_log_group }
