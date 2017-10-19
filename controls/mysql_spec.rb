@@ -29,8 +29,6 @@ when 'ubuntu', 'debian'
   mysql_log_path = '/var/log/'
   mysql_log_file = 'mysql.log'
   mysql_log_group = 'adm'
-  mysql_log_dir_group = 'root'
-  mysql_log_dir_group = 'syslog' if os[:release] == '14.04'
   service_name = 'mysql'
 when 'redhat', 'fedora'
   mysql_config_path = '/etc/'
@@ -39,7 +37,6 @@ when 'redhat', 'fedora'
   mysql_log_path = '/var/log/'
   mysql_log_file = 'mysqld.log'
   mysql_log_group = 'mysql'
-  mysql_log_dir_group = 'root'
   service_name = 'mysqld'
   service_name = 'mariadb' if os[:release] >= '7'
 end
@@ -116,12 +113,6 @@ describe file("#{mysql_data_path}/ibdata1") do
   it { should_not be_readable.by('others') }
   it { should_not be_writable.by('others') }
   it { should_not be_executable.by('others') }
-end
-
-describe file(mysql_log_path) do
-  it { should be_directory }
-  it { should be_owned_by 'root' }
-  it { should be_grouped_into mysql_log_dir_group }
 end
 
 describe file("#{mysql_log_path}/#{mysql_log_file}") do
