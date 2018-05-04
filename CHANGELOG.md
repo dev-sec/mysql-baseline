@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.0.0](https://github.com/dev-sec/mysql-baseline/tree/3.0.0) (2018-05-04)
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/2.2.0...3.0.0)
+
+**Merged pull requests:**
+
+- use inspec controls [\#40](https://github.com/dev-sec/mysql-baseline/pull/40) ([chris-rock](https://github.com/chris-rock))
+
 ## [2.2.0](https://github.com/dev-sec/mysql-baseline/tree/2.2.0) (2018-05-04)
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/2.1.0...2.2.0)
 
@@ -9,6 +16,7 @@
 
 **Merged pull requests:**
 
+- 2.2.0 [\#39](https://github.com/dev-sec/mysql-baseline/pull/39) ([chris-rock](https://github.com/chris-rock))
 - remove logfile check [\#38](https://github.com/dev-sec/mysql-baseline/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 - use recommended spdx license identifier [\#37](https://github.com/dev-sec/mysql-baseline/pull/37) ([chris-rock](https://github.com/chris-rock))
 
