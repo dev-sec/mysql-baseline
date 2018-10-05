@@ -4,7 +4,7 @@ gem 'highline', '~> 1.6.0'
 gem 'inspec', '~> 2'
 gem 'rack', '1.6.4'
 gem 'rake'
-gem 'rubocop', '~> 0.55.0'
+gem 'rubocop', '~> 0.59.0'
 
 group :tools do
   gem 'github_changelog_generator', '~> 1.12.0'
