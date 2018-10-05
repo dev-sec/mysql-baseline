@@ -77,6 +77,8 @@ end
 
 # 'Mysql-config: owner, group and permissions'
 control 'mysql-conf-04' do
+  impact 0.7
+  title 'ensure the mysql data path is owned by mysql user'
   describe file(mysql_data_path) do
     it { should be_directory }
     it { should be_owned_by 'mysql' }
