@@ -30,8 +30,8 @@ end
 control 'mysql-db-02' do
   impact 0.5
   title 'use mysql version 5 or higher'
-  describe command("mysql -u#{user} -p#{pass} mysql -s -e 'select substring(version(),1,1);' | tail -1") do
-    its(:stdout) { should match(/^5/) }
+  describe command("mysql -u#{user} -p#{pass} mysql -s -e 'select substring_index(version(),\".\",1);'") do
+    its(:stdout) { should cmp >= 5 }
   end
 end
 
