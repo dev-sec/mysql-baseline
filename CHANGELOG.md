@@ -1,5 +1,15 @@
 # Change Log
 
+## [3.1.0](https://github.com/dev-sec/mysql-baseline/tree/3.1.0) (2019-05-14)
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.0.0...3.1.0)
+
+**Merged pull requests:**
+
+- Change version string comparison [\#44](https://github.com/dev-sec/mysql-baseline/pull/44) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update issue templates [\#43](https://github.com/dev-sec/mysql-baseline/pull/43) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- update rubocop gem dependency [\#42](https://github.com/dev-sec/mysql-baseline/pull/42) ([chris-rock](https://github.com/chris-rock))
+- add missing impact and title to inspec control [\#41](https://github.com/dev-sec/mysql-baseline/pull/41) ([chris-rock](https://github.com/chris-rock))
+
 ## [3.0.0](https://github.com/dev-sec/mysql-baseline/tree/3.0.0) (2018-05-04)
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/2.2.0...3.0.0)
 
