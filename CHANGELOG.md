@@ -1,8 +1,16 @@
 # Changelog
 
-## [2.1.1](https://github.com/dev-sec/mysql-baseline/tree/2.1.1) (2020-06-18)
+## [3.1.2](https://github.com/dev-sec/mysql-baseline/tree/3.1.2) (2020-06-18)
 
-[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.0...2.1.1)
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.1...3.1.2)
+
+**Merged pull requests:**
+
+- version alignment [\#47](https://github.com/dev-sec/mysql-baseline/pull/47) ([micheelengronne](https://github.com/micheelengronne))
+
+## [3.1.1](https://github.com/dev-sec/mysql-baseline/tree/3.1.1) (2020-06-18)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.0...3.1.1)
 
 **Merged pull requests:**
 
@@ -41,6 +49,7 @@
 - 2.2.0 [\#39](https://github.com/dev-sec/mysql-baseline/pull/39) ([chris-rock](https://github.com/chris-rock))
 - remove logfile check [\#38](https://github.com/dev-sec/mysql-baseline/pull/38) ([rndmh3ro](https://github.com/rndmh3ro))
 - use recommended spdx license identifier [\#37](https://github.com/dev-sec/mysql-baseline/pull/37) ([chris-rock](https://github.com/chris-rock))
+- restrict ruby testing to version 2.3.3 and update gemfile [\#32](https://github.com/dev-sec/mysql-baseline/pull/32) ([atomic111](https://github.com/atomic111))
 
 ## [2.1.0](https://github.com/dev-sec/mysql-baseline/tree/2.1.0) (2017-05-08)
 
@@ -50,7 +59,6 @@
 
 - Update metadata [\#36](https://github.com/dev-sec/mysql-baseline/pull/36) ([chris-rock](https://github.com/chris-rock))
 - update centos7 service name [\#34](https://github.com/dev-sec/mysql-baseline/pull/34) ([rndmh3ro](https://github.com/rndmh3ro))
-- restrict ruby testing to version 2.3.3 and update gemfile [\#32](https://github.com/dev-sec/mysql-baseline/pull/32) ([atomic111](https://github.com/atomic111))
 - streamline config owner, remove duplicate [\#31](https://github.com/dev-sec/mysql-baseline/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.0.0](https://github.com/dev-sec/mysql-baseline/tree/2.0.0) (2017-01-02)
