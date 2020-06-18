@@ -1,16 +1,27 @@
-# Change Log
+# Changelog
 
-## [3.1.0](https://github.com/dev-sec/mysql-baseline/tree/3.1.0) (2019-05-14)
+## [2.1.1](https://github.com/dev-sec/mysql-baseline/tree/2.1.1) (2020-06-18)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.0...2.1.1)
+
+**Merged pull requests:**
+
+- github actions release [\#46](https://github.com/dev-sec/mysql-baseline/pull/46) ([micheelengronne](https://github.com/micheelengronne))
+
+## [3.1.0](https://github.com/dev-sec/mysql-baseline/tree/3.1.0) (2019-05-15)
+
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.0.0...3.1.0)
 
 **Merged pull requests:**
 
+- Bump version to 3.1.0 and switch to inspec 3 for check [\#45](https://github.com/dev-sec/mysql-baseline/pull/45) ([alexpop](https://github.com/alexpop))
 - Change version string comparison [\#44](https://github.com/dev-sec/mysql-baseline/pull/44) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update issue templates [\#43](https://github.com/dev-sec/mysql-baseline/pull/43) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - update rubocop gem dependency [\#42](https://github.com/dev-sec/mysql-baseline/pull/42) ([chris-rock](https://github.com/chris-rock))
 - add missing impact and title to inspec control [\#41](https://github.com/dev-sec/mysql-baseline/pull/41) ([chris-rock](https://github.com/chris-rock))
 
 ## [3.0.0](https://github.com/dev-sec/mysql-baseline/tree/3.0.0) (2018-05-04)
+
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/2.2.0...3.0.0)
 
 **Merged pull requests:**
@@ -18,6 +29,7 @@
 - use inspec controls [\#40](https://github.com/dev-sec/mysql-baseline/pull/40) ([chris-rock](https://github.com/chris-rock))
 
 ## [2.2.0](https://github.com/dev-sec/mysql-baseline/tree/2.2.0) (2018-05-04)
+
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/2.1.0...2.2.0)
 
 **Closed issues:**
@@ -31,6 +43,7 @@
 - use recommended spdx license identifier [\#37](https://github.com/dev-sec/mysql-baseline/pull/37) ([chris-rock](https://github.com/chris-rock))
 
 ## [2.1.0](https://github.com/dev-sec/mysql-baseline/tree/2.1.0) (2017-05-08)
+
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/2.0.0...2.1.0)
 
 **Merged pull requests:**
@@ -41,6 +54,7 @@
 - streamline config owner, remove duplicate [\#31](https://github.com/dev-sec/mysql-baseline/pull/31) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [2.0.0](https://github.com/dev-sec/mysql-baseline/tree/2.0.0) (2017-01-02)
+
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/1.2.0...2.0.0)
 
 **Merged pull requests:**
@@ -49,31 +63,23 @@
 - migrate from Serverspec to InSpec [\#29](https://github.com/dev-sec/mysql-baseline/pull/29) ([chris-rock](https://github.com/chris-rock))
 
 ## [1.2.0](https://github.com/dev-sec/mysql-baseline/tree/1.2.0) (2015-10-15)
+
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/1.1.0...1.2.0)
 
-**Merged pull requests:**
-
-- add ansible support [\#27](https://github.com/dev-sec/mysql-baseline/pull/27) ([rndmh3ro](https://github.com/rndmh3ro))
-- update urls [\#26](https://github.com/dev-sec/mysql-baseline/pull/26) ([chris-rock](https://github.com/chris-rock))
-- add json format option [\#25](https://github.com/dev-sec/mysql-baseline/pull/25) ([atomic111](https://github.com/atomic111))
-- tmp files considered harmful, move the tmp file to /root so that only root can [\#24](https://github.com/dev-sec/mysql-baseline/pull/24) ([ehaselwanter](https://github.com/ehaselwanter))
-- Update common [\#23](https://github.com/dev-sec/mysql-baseline/pull/23) ([arlimus](https://github.com/arlimus))
-- Update common [\#22](https://github.com/dev-sec/mysql-baseline/pull/22) ([arlimus](https://github.com/arlimus))
-- updating common files [\#21](https://github.com/dev-sec/mysql-baseline/pull/21) ([arlimus](https://github.com/arlimus))
-- move to serverspec2 [\#20](https://github.com/dev-sec/mysql-baseline/pull/20) ([ehaselwanter](https://github.com/ehaselwanter))
-- add percona test role [\#18](https://github.com/dev-sec/mysql-baseline/pull/18) ([chris-rock](https://github.com/chris-rock))
-
 ## [1.1.0](https://github.com/dev-sec/mysql-baseline/tree/1.1.0) (2014-09-11)
+
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/1.0.0...1.1.0)
 
 **Merged pull requests:**
 
-- Dtag sec 3.24 9 [\#17](https://github.com/dev-sec/mysql-baseline/pull/17) ([arlimus](https://github.com/arlimus))
 - make sure conf files are not writable or executable by others [\#16](https://github.com/dev-sec/mysql-baseline/pull/16) ([arlimus](https://github.com/arlimus))
 - install server and apply hardening in seperate steps [\#14](https://github.com/dev-sec/mysql-baseline/pull/14) ([chris-rock](https://github.com/chris-rock))
 - root should be owner of mysql config [\#13](https://github.com/dev-sec/mysql-baseline/pull/13) ([chris-rock](https://github.com/chris-rock))
 
 ## [1.0.0](https://github.com/dev-sec/mysql-baseline/tree/1.0.0) (2014-08-13)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/498e61287ce653cd1dce5b867c9f112f5bc0776a...1.0.0)
+
 **Merged pull requests:**
 
 - added kitchen test for secure-auth optionen and updated requirement number [\#12](https://github.com/dev-sec/mysql-baseline/pull/12) ([atomic111](https://github.com/atomic111))
@@ -91,4 +97,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
