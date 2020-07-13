@@ -16,8 +16,8 @@
 # limitations under the License.
 #
 
-user = attribute('User', description: 'MySQL database user', default: 'root', required: true)
-pass = attribute('Password', description: 'MySQL database password', default: 'iloverandompasswordsbutthiswilldo', required: true)
+user = attribute('User', description: 'MySQL database user', value: 'root', required: true)
+pass = attribute('Password', description: 'MySQL database password', value: 'iloverandompasswordsbutthiswilldo', required: true)
 
 control 'mysql-db-01' do
   impact 0.3
