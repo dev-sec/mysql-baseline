@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.4](https://github.com/dev-sec/mysql-baseline/tree/3.1.4) (2020-07-23)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.3...3.1.4)
+
+**Merged pull requests:**
+
+- The release draft references the correct SHA [\#49](https://github.com/dev-sec/mysql-baseline/pull/49) ([micheelengronne](https://github.com/micheelengronne))
+
 ## [3.1.3](https://github.com/dev-sec/mysql-baseline/tree/3.1.3) (2020-07-13)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.2...3.1.3)
