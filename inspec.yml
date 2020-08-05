@@ -6,6 +6,6 @@ copyright: DevSec Hardening Framework Team
 copyright_email: hello@dev-sec.io
 license: Apache-2.0
 summary: Test-suite for best-practice mysql hardening
-version: 3.1.4
+version: 3.1.5
 supports:
     - os-family: unix

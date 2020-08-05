@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.5](https://github.com/dev-sec/mysql-baseline/tree/3.1.5) (2020-08-05)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.4...3.1.5)
+
+**Merged pull requests:**
+
+- change log path and name for centos\>7 [\#51](https://github.com/dev-sec/mysql-baseline/pull/51) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [3.1.4](https://github.com/dev-sec/mysql-baseline/tree/3.1.4) (2020-07-23)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.3...3.1.4)
