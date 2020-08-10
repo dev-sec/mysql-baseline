@@ -22,17 +22,16 @@ user = attribute('User', description: 'MySQL database user', value: 'root', requ
 pass = attribute('Password', description: 'MySQL database password', value: 'iloverandompasswordsbutthiswilldo', required: true)
 
 # get datadir and logfile-path from settings in the configuration if it is defined or from mysql itself
-if mysql_conf.params.mysqld.datadir
-  mysql_data_path = mysql_conf.params.mysqld.datadir
-else
-  mysql_data_path = command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.datadir\";").stdout.strip
-end
 
-if mysql_conf.params.mysqld.log_error
-  mysql_log_file = mysql_conf.params.mysqld.log_error
-else
-  mysql_log_file = command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.log_error\";").stdout.strip
-end
+mysql_data_path = if mysql_conf.params.mysqld.datadir
+                  else
+                    command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.datadir\";").stdout.strip
+                  end
+
+mysql_log_file = if mysql_conf.params.mysqld.log_error
+                 else
+                   command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.log_error\";").stdout.strip
+                 end
 
 # set OS-dependent filenames and paths
 case os[:family]
@@ -111,7 +110,7 @@ end
 control 'mysql-conf-06' do
   impact 0.5
   title 'ensure log file is owned by mysql user'
-  describe file("#{mysql_log_file}") do
+  describe file(mysql_log_file) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into mysql_log_group }
     it { should_not be_readable.by('others') }
