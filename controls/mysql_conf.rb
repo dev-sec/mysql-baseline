@@ -23,12 +23,14 @@ pass = attribute('Password', description: 'MySQL database password', value: 'ilo
 
 # get datadir and logfile-path from settings in the configuration if it is defined or from mysql itself
 
-mysql_data_path = if mysql_conf.params.mysqld.datadir
+mysql_data_path = if mysql_conf.params.mysqld && mysql_conf.params.mysqld.datadir
+                    mysql_conf.params.mysqld.datadir
                   else
                     command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.datadir\";").stdout.strip
                   end
 
-mysql_log_file = if mysql_conf.params.mysqld.log_error
+mysql_log_file = if mysql_conf.params.mysqld && mysql_conf.params.mysqld.log_error
+                   mysql_conf.params.mysqld.log_error
                  else
                    command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.log_error\";").stdout.strip
                  end
