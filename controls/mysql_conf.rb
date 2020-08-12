@@ -18,24 +18,33 @@
 
 mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 
+user = attribute('User', description: 'MySQL database user', value: 'root', required: true)
+pass = attribute('Password', description: 'MySQL database password', value: 'iloverandompasswordsbutthiswilldo', required: true)
+
+# get datadir and logfile-path from settings in the configuration if it is defined or from mysql itself
+
+mysql_data_path = if mysql_conf.params.mysqld && mysql_conf.params.mysqld.datadir
+                    mysql_conf.params.mysqld.datadir
+                  else
+                    command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.datadir\";").stdout.strip
+                  end
+
+mysql_log_file = if mysql_conf.params.mysqld && mysql_conf.params.mysqld.log_error
+                   mysql_conf.params.mysqld.log_error
+                 else
+                   command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.log_error\";").stdout.strip
+                 end
+
 # set OS-dependent filenames and paths
 case os[:family]
 when 'ubuntu', 'debian'
   mysql_config_path = '/etc/mysql/'
   mysql_config_file = mysql_config_path + 'my.cnf'
-  mysql_data_path = '/var/lib/mysql/'
-  mysql_log_path = '/var/log/'
-  mysql_log_file = 'mysql.log'
   mysql_log_group = 'adm'
   service_name = 'mysql'
 when 'redhat', 'fedora'
   mysql_config_path = '/etc/'
   mysql_config_file = mysql_config_path + 'my.cnf'
-  mysql_data_path = '/var/lib/mysql/'
-  mysql_log_path = '/var/log/'
-  mysql_log_path = '/var/log/mariadb/' if os[:release] >= '7'
-  mysql_log_file = 'mysqld.log'
-  mysql_log_file = 'mariadb.log' if os[:release] >= '7'
   mysql_log_group = 'mysql'
   service_name = 'mysqld'
   service_name = 'mariadb' if os[:release] >= '7'
@@ -103,7 +112,7 @@ end
 control 'mysql-conf-06' do
   impact 0.5
   title 'ensure log file is owned by mysql user'
-  describe file("#{mysql_log_path}/#{mysql_log_file}") do
+  describe file(mysql_log_file) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into mysql_log_group }
     it { should_not be_readable.by('others') }
