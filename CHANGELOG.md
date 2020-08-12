@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.6](https://github.com/dev-sec/mysql-baseline/tree/3.1.6) (2020-08-12)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.5...3.1.6)
+
+**Closed issues:**
+
+- CentOS 7 and 8 logfile is /var/log/mariadb/mariadb.log [\#50](https://github.com/dev-sec/mysql-baseline/issues/50)
+
+**Merged pull requests:**
+
+-  dynamically define mysql datadir and log\_error  [\#54](https://github.com/dev-sec/mysql-baseline/pull/54) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [3.1.5](https://github.com/dev-sec/mysql-baseline/tree/3.1.5) (2020-08-05)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.4...3.1.5)
