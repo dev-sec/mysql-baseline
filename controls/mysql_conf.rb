@@ -29,8 +29,8 @@ mysql_data_path = if mysql_conf.params.mysqld && mysql_conf.params.mysqld.datadi
                     command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.datadir\";").stdout.strip
                   end
 
-mysql_log_file = if mysql_conf.params.mysqld && mysql_conf.params.mysqld.log_error
-                   mysql_conf.params.mysqld.log_error
+mysql_log_file = if mysql_conf.params.mysqld && mysql_conf.params.mysqld['log-error']
+                   mysql_conf.params.mysqld['log-error']
                  else
                    command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.log_error\";").stdout.strip
                  end
