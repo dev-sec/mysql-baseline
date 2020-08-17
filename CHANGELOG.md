@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.7](https://github.com/dev-sec/mysql-baseline/tree/3.1.7) (2020-08-17)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.6...3.1.7)
+
+**Fixed bugs:**
+
+- fix wrong parameter in new dynamic determination [\#55](https://github.com/dev-sec/mysql-baseline/pull/55) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [3.1.6](https://github.com/dev-sec/mysql-baseline/tree/3.1.6) (2020-08-12)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.5...3.1.6)
