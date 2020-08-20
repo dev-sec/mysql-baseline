@@ -54,7 +54,7 @@ end
 control 'mysql-db-05' do
   impact 1.0
   title 'default passwords must be changed'
-  describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where length(password)=0 or password=\"\";'") do
+  describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where (length(password)=0 or password=\"\") and (length(authentication_string)=0 or authentication_string=\"\");'") do
     its(:stdout) { should match(/^0/) }
   end
 end
