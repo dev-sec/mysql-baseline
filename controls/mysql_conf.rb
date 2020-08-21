@@ -123,10 +123,10 @@ end
 
 control 'mysql-conf-07' do
   impact 0.7
-  title 'ensure the mysql config file is owned by mysql'
+  title 'ensure the mysql config file is owned by user root, group mysql'
   describe file(mysql_config_file) do
     it { should be_file }
-    it { should be_owned_by 'mysql' }
+    it { should be_owned_by 'root' }
     it { should be_grouped_into 'mysql' }
     it { should_not be_readable.by('others') }
   end
@@ -135,9 +135,9 @@ end
 # test this only if we have a mysql_hardening_file
 control 'mysql-conf-08' do
   impact 0.5
-  title 'ensure the mysql hardening config file is owned by mysql'
+  title 'ensure the mysql hardening config file is owned by user root, group mysql'
   describe file(mysql_hardening_file) do
-    it { should be_owned_by 'mysql' }
+    it { should be_owned_by 'root' }
     it { should be_grouped_into 'mysql' }
     it { should_not be_readable.by('others') }
   end
