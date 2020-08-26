@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.0](https://github.com/dev-sec/mysql-baseline/tree/4.0.0) (2020-08-26)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.7...4.0.0)
+
+**Merged pull requests:**
+
+- BREAKING: config-files should be owned by mysql-user [\#56](https://github.com/dev-sec/mysql-baseline/pull/56) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [3.1.7](https://github.com/dev-sec/mysql-baseline/tree/3.1.7) (2020-08-17)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.6...3.1.7)
