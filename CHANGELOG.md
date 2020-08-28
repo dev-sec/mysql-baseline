@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/dev-sec/mysql-baseline/tree/4.0.1) (2020-08-28)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.0...4.0.1)
+
+**Merged pull requests:**
+
+- only run password-checks when the appropriate columns exist [\#52](https://github.com/dev-sec/mysql-baseline/pull/52) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.0.0](https://github.com/dev-sec/mysql-baseline/tree/4.0.0) (2020-08-26)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.7...4.0.0)
