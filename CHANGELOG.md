@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.2](https://github.com/dev-sec/mysql-baseline/tree/4.0.2) (2020-10-14)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.1...4.0.2)
+
+**Closed issues:**
+
+- Dynamically determine logfile path [\#53](https://github.com/dev-sec/mysql-baseline/issues/53)
+
+**Merged pull requests:**
+
+- check if a password column exists and only then check contents [\#57](https://github.com/dev-sec/mysql-baseline/pull/57) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.0.1](https://github.com/dev-sec/mysql-baseline/tree/4.0.1) (2020-08-28)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.0...4.0.1)
