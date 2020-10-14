@@ -51,10 +51,24 @@ control 'mysql-db-04' do
   end
 end
 
+# MySQL 5.7.6 dropped the "password" column in the mysql.user table
+# so we have to check if it's there before we check if a password is empty
 control 'mysql-db-05' do
   impact 1.0
   title 'default passwords must be changed'
+  only_if { command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from information_schema.columns where table_name=\"user\" and table_schema=\"mysql\" and column_name=\"password\";'").stdout.strip == "1" }
   describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where (length(password)=0 or password=\"\") and (length(authentication_string)=0 or authentication_string=\"\");'") do
+    its(:stdout) { should match(/^0/) }
+  end
+end
+
+# MySQL versions older than 5.7.6 and MariaDB databases still have the
+# password column so we need to check if it is empty
+control 'mysql-db-05b' do
+  impact 1.0
+  title 'default passwords must be changed'
+  only_if { command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from information_schema.columns where table_name=\"user\" and table_schema=\"mysql\" and column_name=\"password\";'").stdout.strip == "0" }
+  describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where length(authentication_string)=0 or authentication_string=\"\";'") do
     its(:stdout) { should match(/^0/) }
   end
 end
