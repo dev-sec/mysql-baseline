@@ -1,4 +1,5 @@
 # encoding: utf-8
+# frozen_string_literal: true
 
 # Copyright 2014, Deutsche Telekom AG
 # Copyright 2018, Christoph Hartmann
@@ -18,12 +19,15 @@
 
 mysql_hardening_file = '/etc/mysql/conf.d/hardening.cnf'
 
-user = attribute('User', description: 'MySQL database user', value: 'root', required: true)
-pass = attribute('Password', description: 'MySQL database password', value: 'iloverandompasswordsbutthiswilldo', required: true)
+user = input('user')
+pass = input('password')
+
+# get mysql version and distribution
+version = mysql_version(user, pass)
+distribution = mysql_distribution(user, pass)
 
 # get datadir and logfile-path from settings in the configuration if it is defined or from mysql itself
-
-mysql_data_path = if mysql_conf.params.mysqld && mysql_conf.params.mysqld.datadir
+mysql_data_path = if mysql_conf&.params&.mysqld&.datadir
                     mysql_conf.params.mysqld.datadir
                   else
                     command("mysql -u#{user} -p#{pass} -sN -e \"select @@GLOBAL.datadir\";").stdout.strip
@@ -75,14 +79,25 @@ control 'mysql-conf-03' do
   describe mysql_conf.params('mysqld') do
     its('safe-user-create') { should cmp 1 }
     its('old_passwords') { should_not cmp 1 }
-    its('secure-auth') { should cmp 1 }
     its('user') { should cmp 'mysql' }
-    its('skip-symbolic-links') { should cmp 1 }
     its('secure-file-priv') { should_not eq nil }
     its('local-infile') { should cmp 0 }
+    its('skip-symbolic-links') { should cmp 1 }
     its('skip-show-database') { should eq '' }
     its('skip-grant-tables') { should eq nil }
     its('allow-suspicious-udfs') { should cmp 0 }
+  end
+end
+
+# Parsing configfiles for unwanted entries
+control 'mysql-conf-03b' do
+  impact 0.7
+  title 'enable secure configurations for mysql'
+  only_if('MySQL version less than 8.0.3 and not mariadb') do
+    (Gem::Version.new(version.mysql_version) <= Gem::Version.new('8.0.3') and distribution.mysql_distribution == 'mysql')
+  end
+  describe mysql_conf.params('mysqld') do
+    its('secure-auth') { should cmp 1 }
   end
 end
 
