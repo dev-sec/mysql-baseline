@@ -27,6 +27,6 @@ class MySQLVersion < Inspec.resource(1)
   end
 
   def mysql_version
-    inspec.command("mysql -sN -e 'SHOW VARIABLES WHERE variable_name = \"version\"'").stdout.strip.split("\t")[1].to_s
+    inspec.command("mysql -sN -e 'SHOW VARIABLES WHERE variable_name = \"version\"'").stdout.strip.split("\t")[1].split("-")[0].to_s
   end
 end
