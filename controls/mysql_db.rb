@@ -1,4 +1,5 @@
 # encoding: utf-8
+# frozen_string_literal: true
 
 # Copyright 2014, Deutsche Telekom AG
 # Copyright 2018, Christoph Hartmann
@@ -16,8 +17,8 @@
 # limitations under the License.
 #
 
-user = attribute('User', description: 'MySQL database user', value: 'root', required: true)
-pass = attribute('Password', description: 'MySQL database password', value: 'iloverandompasswordsbutthiswilldo', required: true)
+user = input('user')
+pass = input('password')
 
 control 'mysql-db-01' do
   impact 0.3
