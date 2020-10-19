@@ -10,12 +10,12 @@ version: 4.0.2
 supports:
     - os-family: unix
 inputs:
-  - name: 'user'
-    description: 'MySQL database user'
-    value: 'root'
-    required: true
-  - name: 'password'
-    description: 'MySQL database password'
-    value: 'iloverandompasswordsbutthiswilldo'
-    required: true
-    sensitive: true
+    - name: 'user'
+      description: 'MySQL database user'
+      value: 'root'
+      required: true
+    - name: 'password'
+      description: 'MySQL database password'
+      value: 'iloverandompasswordsbutthiswilldo'
+      required: true
+      sensitive: true
