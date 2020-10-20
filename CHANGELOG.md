@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.3](https://github.com/dev-sec/mysql-baseline/tree/4.0.3) (2020-10-20)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.2...4.0.3)
+
+**Fixed bugs:**
+
+- fix quotes in library again [\#61](https://github.com/dev-sec/mysql-baseline/pull/61) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.0.2](https://github.com/dev-sec/mysql-baseline/tree/4.0.2) (2020-10-20)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.1...4.0.2)
