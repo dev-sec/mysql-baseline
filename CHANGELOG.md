@@ -1,6 +1,6 @@
 # Changelog
 
-## [4.0.2](https://github.com/dev-sec/mysql-baseline/tree/4.0.2) (2020-10-19)
+## [4.0.2](https://github.com/dev-sec/mysql-baseline/tree/4.0.2) (2020-10-20)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.1...4.0.2)
 
@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- fix mysql\_version command [\#60](https://github.com/dev-sec/mysql-baseline/pull/60) ([rndmh3ro](https://github.com/rndmh3ro))
 - use custom resource to get mysql version and distribution [\#59](https://github.com/dev-sec/mysql-baseline/pull/59) ([rndmh3ro](https://github.com/rndmh3ro))
 - check if a password column exists and only then check contents [\#57](https://github.com/dev-sec/mysql-baseline/pull/57) ([rndmh3ro](https://github.com/rndmh3ro))
 
