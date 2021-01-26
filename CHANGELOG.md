@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-01-26)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.3...4.0.4)
+
+**Closed issues:**
+
+- secure-auth is deprecated in MySQL 8.0.3 [\#58](https://github.com/dev-sec/mysql-baseline/issues/58)
+
+**Merged pull requests:**
+
+- add github action for testing [\#62](https://github.com/dev-sec/mysql-baseline/pull/62) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.0.3](https://github.com/dev-sec/mysql-baseline/tree/4.0.3) (2020-10-20)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.2...4.0.3)
