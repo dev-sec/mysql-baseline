@@ -22,6 +22,7 @@ class MySQLVersion < Inspec.resource(1)
   attr_reader :user, :pass
 
   def initialize(user, pass)
+    super()
     @user = user
     @pass = pass
   end
