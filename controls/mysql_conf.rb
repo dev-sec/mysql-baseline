@@ -43,12 +43,12 @@ mysql_log_file = if mysql_conf.params.mysqld && mysql_conf.params.mysqld['log-er
 case os[:family]
 when 'ubuntu', 'debian'
   mysql_config_path = '/etc/mysql/'
-  mysql_config_file = mysql_config_path + 'my.cnf'
+  mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'adm'
   service_name = 'mysql'
 when 'redhat', 'fedora'
   mysql_config_path = '/etc/'
-  mysql_config_file = mysql_config_path + 'my.cnf'
+  mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'mysql'
   service_name = 'mysqld'
   service_name = 'mariadb' if os[:release] >= '7'
