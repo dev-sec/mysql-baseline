@@ -1,6 +1,6 @@
 # Changelog
 
-## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-01-28)
+## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-02-02)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.3...4.0.4)
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- use version tag for changelog action [\#64](https://github.com/dev-sec/mysql-baseline/pull/64) ([schurzi](https://github.com/schurzi))
 - Fix lint [\#63](https://github.com/dev-sec/mysql-baseline/pull/63) ([schurzi](https://github.com/schurzi))
 - add github action for testing [\#62](https://github.com/dev-sec/mysql-baseline/pull/62) ([rndmh3ro](https://github.com/rndmh3ro))
 
