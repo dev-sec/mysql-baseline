@@ -67,7 +67,7 @@ end
 control 'mysql-conf-02' do
   impact 0.5
   title 'only one instance of mysql should run on a server'
-  describe command("pgrep -c #{service_name}") do
+  describe command("pgrep -x -c #{service_name}") do
     its(:stdout) { should match(/^1$/) }
   end
 end
