@@ -1,8 +1,12 @@
 # Changelog
 
-## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-02-02)
+## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-03-04)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.3...4.0.4)
+
+**Implemented enhancements:**
+
+- use service name for process check instead of hardcoding it [\#65](https://github.com/dev-sec/mysql-baseline/pull/65) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Closed issues:**
 
