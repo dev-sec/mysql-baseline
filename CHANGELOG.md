@@ -1,6 +1,6 @@
 # Changelog
 
-## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-03-22)
+## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-07-19)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.3...4.0.4)
 
@@ -8,12 +8,17 @@
 
 - use service name for process check instead of hardcoding it [\#65](https://github.com/dev-sec/mysql-baseline/pull/65) ([rndmh3ro](https://github.com/rndmh3ro))
 
+**Fixed bugs:**
+
+- fix service process control check [\#67](https://github.com/dev-sec/mysql-baseline/pull/67) ([rndmh3ro](https://github.com/rndmh3ro))
+
 **Closed issues:**
 
 - secure-auth is deprecated in MySQL 8.0.3 [\#58](https://github.com/dev-sec/mysql-baseline/issues/58)
 
 **Merged pull requests:**
 
+- format and update README.md [\#69](https://github.com/dev-sec/mysql-baseline/pull/69) ([schurzi](https://github.com/schurzi))
 - add dependency to chef-config for CI [\#66](https://github.com/dev-sec/mysql-baseline/pull/66) ([schurzi](https://github.com/schurzi))
 - use version tag for changelog action [\#64](https://github.com/dev-sec/mysql-baseline/pull/64) ([schurzi](https://github.com/schurzi))
 - Fix lint [\#63](https://github.com/dev-sec/mysql-baseline/pull/63) ([schurzi](https://github.com/schurzi))
@@ -57,7 +62,6 @@
 **Merged pull requests:**
 
 - BREAKING: config-files should be owned by mysql-user [\#56](https://github.com/dev-sec/mysql-baseline/pull/56) ([rndmh3ro](https://github.com/rndmh3ro))
-- The release draft references the correct SHA [\#49](https://github.com/dev-sec/mysql-baseline/pull/49) ([micheelengronne](https://github.com/micheelengronne))
 
 ## [3.1.7](https://github.com/dev-sec/mysql-baseline/tree/3.1.7) (2020-08-17)
 
@@ -90,6 +94,10 @@
 ## [3.1.4](https://github.com/dev-sec/mysql-baseline/tree/3.1.4) (2020-07-23)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/3.1.3...3.1.4)
+
+**Merged pull requests:**
+
+- The release draft references the correct SHA [\#49](https://github.com/dev-sec/mysql-baseline/pull/49) ([micheelengronne](https://github.com/micheelengronne))
 
 ## [3.1.3](https://github.com/dev-sec/mysql-baseline/tree/3.1.3) (2020-07-13)
 
