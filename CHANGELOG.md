@@ -1,6 +1,6 @@
 # Changelog
 
-## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2021-07-19)
+## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2022-01-12)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.3...4.0.4)
 
@@ -18,6 +18,7 @@
 
 **Merged pull requests:**
 
+- use input instead of attribute [\#70](https://github.com/dev-sec/mysql-baseline/pull/70) ([micheelengronne](https://github.com/micheelengronne))
 - format and update README.md [\#69](https://github.com/dev-sec/mysql-baseline/pull/69) ([schurzi](https://github.com/schurzi))
 - add dependency to chef-config for CI [\#66](https://github.com/dev-sec/mysql-baseline/pull/66) ([schurzi](https://github.com/schurzi))
 - use version tag for changelog action [\#64](https://github.com/dev-sec/mysql-baseline/pull/64) ([schurzi](https://github.com/schurzi))
