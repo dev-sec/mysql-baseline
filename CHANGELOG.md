@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.5](https://github.com/dev-sec/mysql-baseline/tree/4.0.5) (2022-03-18)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.4...4.0.5)
+
+**Merged pull requests:**
+
+- Change linting to Cookstyle [\#71](https://github.com/dev-sec/mysql-baseline/pull/71) ([schurzi](https://github.com/schurzi))
+
 ## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2022-01-12)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.3...4.0.4)
