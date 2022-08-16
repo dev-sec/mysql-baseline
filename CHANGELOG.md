@@ -1,11 +1,15 @@
 # Changelog
 
-## [4.0.5](https://github.com/dev-sec/mysql-baseline/tree/4.0.5) (2022-03-18)
+## [4.0.5](https://github.com/dev-sec/mysql-baseline/tree/4.0.5) (2022-08-16)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.4...4.0.5)
 
 **Merged pull requests:**
 
+- fix wrong process name [\#75](https://github.com/dev-sec/mysql-baseline/pull/75) ([rndmh3ro](https://github.com/rndmh3ro))
+- debian 11 has a mysql@localhost user with all privs [\#74](https://github.com/dev-sec/mysql-baseline/pull/74) ([rndmh3ro](https://github.com/rndmh3ro))
+- process name and the service name differ on debian 11 [\#73](https://github.com/dev-sec/mysql-baseline/pull/73) ([rndmh3ro](https://github.com/rndmh3ro))
+- do not run logfile check if no logfile is specified [\#72](https://github.com/dev-sec/mysql-baseline/pull/72) ([rndmh3ro](https://github.com/rndmh3ro))
 - Change linting to Cookstyle [\#71](https://github.com/dev-sec/mysql-baseline/pull/71) ([schurzi](https://github.com/schurzi))
 
 ## [4.0.4](https://github.com/dev-sec/mysql-baseline/tree/4.0.4) (2022-01-12)
