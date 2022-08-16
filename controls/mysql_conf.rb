@@ -44,7 +44,7 @@ when 'ubuntu', 'debian'
   mysql_config_path = '/etc/mysql/'
   mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'adm'
-  process_name = 'mysql'
+  process_name = 'mysqld'
   process_name = 'mariadbd' if os[:release] >= '11' && os[:name] == 'debian'
   service_name = 'mysql'
 when 'redhat', 'fedora'
