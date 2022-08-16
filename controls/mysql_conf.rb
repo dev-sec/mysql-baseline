@@ -126,6 +126,7 @@ end
 control 'mysql-conf-06' do
   impact 0.5
   title 'ensure log file is owned by mysql user'
+  only_if { mysql_log_file != '' }
   describe file(mysql_log_file) do
     it { should be_owned_by 'mysql' }
     it { should be_grouped_into mysql_log_group }
