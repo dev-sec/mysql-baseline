@@ -44,11 +44,14 @@ when 'ubuntu', 'debian'
   mysql_config_path = '/etc/mysql/'
   mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'adm'
+  process_name = 'mysql'
+  process_name = 'mariadbd' if os[:release] >= '11' && os[:name] == 'debian'
   service_name = 'mysql'
 when 'redhat', 'fedora'
   mysql_config_path = '/etc/'
   mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'mysql'
+  process_name = 'mysqld'
   service_name = 'mysqld'
   service_name = 'mariadb' if os[:release] >= '7'
 end
@@ -66,7 +69,7 @@ end
 control 'mysql-conf-02' do
   impact 0.5
   title 'only one instance of mysql should run on a server'
-  describe command('pgrep -x -c mysqld') do
+  describe command("pgrep -x -c #{process_name}") do
     its(:stdout) { should match(/^1$/) }
   end
 end
