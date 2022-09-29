@@ -35,16 +35,22 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           future_release: ${{ steps.version.outputs.next-version }}
 
-      - name: push changelog
+
+      - name: update inspec.yml
+        uses: mikefarah/yq@3.2.1
+        with:
+          cmd: yq w -I4 -i inspec.yml version ${{ steps.version.outputs.next-version }} && sed -i '1i---' inspec.yml
+
+      - name: push inspec.yml and changelog
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
-          commit-message: 'update changelog'
-          force-add: 'true'
-          files: CHANGELOG.md
+          commit-message: 'update inspec.yml and changelog'
+          files: inspec.yml CHANGELOG.md
           name: dev-sec CI
           email: hello@dev-sec.io
+          force-add: 'true'
 
       - name: Generate changelog for the release
         run: |
