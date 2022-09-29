@@ -1,8 +1,8 @@
 # Changelog
 
-## [4.0.5](https://github.com/dev-sec/mysql-baseline/tree/4.0.5) (2022-08-16)
+## [4.1.0](https://github.com/dev-sec/mysql-baseline/tree/4.1.0) (2022-08-16)
 
-[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.4...4.0.5)
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.4...4.1.0)
 
 **Merged pull requests:**
 
