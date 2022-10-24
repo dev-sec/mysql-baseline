@@ -52,6 +52,7 @@ when 'redhat', 'fedora'
   mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'mysql'
   process_name = 'mysqld'
+  process_name = 'mariadbd' if os[:release] >= '9'
   service_name = 'mysqld'
   service_name = 'mariadb' if os[:release] >= '7'
 end
