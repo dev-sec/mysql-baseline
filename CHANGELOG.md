@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.1.1](https://github.com/dev-sec/mysql-baseline/tree/4.1.1) (2022-10-24)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.1.0...4.1.1)
+
+**Implemented enhancements:**
+
+- support for el9 [\#76](https://github.com/dev-sec/mysql-baseline/pull/76) ([rndmh3ro](https://github.com/rndmh3ro))
+
 ## [4.1.0](https://github.com/dev-sec/mysql-baseline/tree/4.1.0) (2022-08-16)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.0.4...4.1.0)
