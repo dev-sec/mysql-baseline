@@ -55,6 +55,12 @@ when 'redhat', 'fedora'
   process_name = 'mariadbd' if os[:release] >= '9'
   service_name = 'mysqld'
   service_name = 'mariadb' if os[:release] >= '7'
+when 'suse'
+  mysql_config_path = '/etc/'
+  mysql_config_file = "#{mysql_config_path}my.cnf"
+  mysql_log_group = 'mysql'
+  process_name = 'mysqld'
+  service_name = 'mariadb'
 end
 
 control 'mysql-conf-01' do
