@@ -46,30 +46,17 @@ when 'ubuntu', 'debian'
   mysql_log_group = 'adm'
   process_name = 'mysqld'
   process_name = 'mariadbd' if os[:release] >= '11' && os[:name] == 'debian'
-  service_name = 'mysql'
 when 'redhat', 'fedora'
   mysql_config_path = '/etc/'
   mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'mysql'
   process_name = 'mysqld'
   process_name = 'mariadbd' if os[:release] >= '9'
-  service_name = 'mysqld'
-  service_name = 'mariadb' if os[:release] >= '7'
 when 'suse'
   mysql_config_path = '/etc/'
   mysql_config_file = "#{mysql_config_path}my.cnf"
   mysql_log_group = 'mysql'
   process_name = 'mysqld'
-  service_name = 'mariadb'
-end
-
-control 'mysql-conf-01' do
-  impact 0.5
-  title 'ensure the service is enabled and running'
-  describe service(service_name) do
-    it { should be_enabled }
-    it { should be_running }
-  end
 end
 
 # 'Check for multiple instances' do
