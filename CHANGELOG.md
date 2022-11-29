@@ -1,6 +1,6 @@
 # Changelog
 
-## [4.1.1](https://github.com/dev-sec/mysql-baseline/tree/4.1.1) (2022-11-28)
+## [4.1.1](https://github.com/dev-sec/mysql-baseline/tree/4.1.1) (2022-11-29)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.1.0...4.1.1)
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Delete first control [\#78](https://github.com/dev-sec/mysql-baseline/pull/78) ([rndmh3ro](https://github.com/rndmh3ro))
 - add suse support [\#77](https://github.com/dev-sec/mysql-baseline/pull/77) ([rndmh3ro](https://github.com/rndmh3ro))
 
 ## [4.1.0](https://github.com/dev-sec/mysql-baseline/tree/4.1.0) (2022-08-16)
