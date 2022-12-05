@@ -1,11 +1,12 @@
 # Changelog
 
-## [4.1.1](https://github.com/dev-sec/mysql-baseline/tree/4.1.1) (2022-11-29)
+## [Unreleased](https://github.com/dev-sec/mysql-baseline/tree/HEAD)
 
-[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.1.0...4.1.1)
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.1.0...HEAD)
 
 **Implemented enhancements:**
 
+- use centralised issue templates and workflows [\#79](https://github.com/dev-sec/mysql-baseline/pull/79) ([schurzi](https://github.com/schurzi))
 - support for el9 [\#76](https://github.com/dev-sec/mysql-baseline/pull/76) ([rndmh3ro](https://github.com/rndmh3ro))
 
 **Merged pull requests:**
