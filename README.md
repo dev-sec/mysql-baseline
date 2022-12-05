@@ -30,7 +30,7 @@ cinc-auditor exec https://github.com/dev-sec/mysql-baseline
 
 - Copyright 2014, Deutsche Telekom AG
 - Copyright 2014-2016, The Hardening Framework Team
-- Copyright 2016-2021, DevSec Hardening Framework Team
+- Copyright 2016-2022, DevSec Hardening Framework Team
 
 ```text
 Licensed under the Apache License, Version 2.0 (the "License");
