@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/dev-sec/mysql-baseline/tree/HEAD)
+## [4.1.1](https://github.com/dev-sec/mysql-baseline/tree/4.1.1) (2022-12-05)
 
-[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.1.0...HEAD)
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.1.0...4.1.1)
 
 **Implemented enhancements:**
 
