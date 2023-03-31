@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/dev-sec/mysql-baseline/tree/5.0.1) (2023-03-31)
+
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/5.0.0...5.0.1)
+
+**Merged pull requests:**
+
+- Configure Renovate [\#80](https://github.com/dev-sec/mysql-baseline/pull/80) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [5.0.0](https://github.com/dev-sec/mysql-baseline/tree/5.0.0) (2022-12-19)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/4.1.0...5.0.0)
