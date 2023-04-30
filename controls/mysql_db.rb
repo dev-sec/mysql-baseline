@@ -45,7 +45,7 @@ end
 
 control 'mysql-db-04' do
   impact 1.0
-  title 'deactivate annonymous user names'
+  title 'deactivate anonymous user names'
   describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where user=\"\";'") do
     its(:stdout) { should match(/^0/) }
   end
