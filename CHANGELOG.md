@@ -1,11 +1,12 @@
 # Changelog
 
-## [5.0.1](https://github.com/dev-sec/mysql-baseline/tree/5.0.1) (2023-03-31)
+## [5.0.1](https://github.com/dev-sec/mysql-baseline/tree/5.0.1) (2023-05-02)
 
 [Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/5.0.0...5.0.1)
 
 **Merged pull requests:**
 
+- add spellchecking with codespell [\#81](https://github.com/dev-sec/mysql-baseline/pull/81) ([schurzi](https://github.com/schurzi))
 - Configure Renovate [\#80](https://github.com/dev-sec/mysql-baseline/pull/80) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [5.0.0](https://github.com/dev-sec/mysql-baseline/tree/5.0.0) (2022-12-19)
@@ -223,7 +224,7 @@
 **Merged pull requests:**
 
 - make sure conf files are not writable or executable by others [\#16](https://github.com/dev-sec/mysql-baseline/pull/16) ([arlimus](https://github.com/arlimus))
-- install server and apply hardening in seperate steps [\#14](https://github.com/dev-sec/mysql-baseline/pull/14) ([chris-rock](https://github.com/chris-rock))
+- install server and apply hardening in separate steps [\#14](https://github.com/dev-sec/mysql-baseline/pull/14) ([chris-rock](https://github.com/chris-rock))
 - root should be owner of mysql config [\#13](https://github.com/dev-sec/mysql-baseline/pull/13) ([chris-rock](https://github.com/chris-rock))
 
 ## [1.0.0](https://github.com/dev-sec/mysql-baseline/tree/1.0.0) (2014-08-13)
@@ -235,7 +236,7 @@
 - added kitchen test for secure-auth optionen and updated requirement number [\#12](https://github.com/dev-sec/mysql-baseline/pull/12) ([atomic111](https://github.com/atomic111))
 - Ensure serverspec does not fail with wrong cli languages [\#11](https://github.com/dev-sec/mysql-baseline/pull/11) ([chris-rock](https://github.com/chris-rock))
 - test only if we have distinct hardening file. \(not the case in the puppet [\#10](https://github.com/dev-sec/mysql-baseline/pull/10) ([ehaselwanter](https://github.com/ehaselwanter))
-- update tests for all supported plattform [\#9](https://github.com/dev-sec/mysql-baseline/pull/9) ([ehaselwanter](https://github.com/ehaselwanter))
+- update tests for all supported platform [\#9](https://github.com/dev-sec/mysql-baseline/pull/9) ([ehaselwanter](https://github.com/ehaselwanter))
 - add some GIS requirements [\#8](https://github.com/dev-sec/mysql-baseline/pull/8) ([ehaselwanter](https://github.com/ehaselwanter))
 - update with common rubocop stuff and fixes [\#7](https://github.com/dev-sec/mysql-baseline/pull/7) ([ehaselwanter](https://github.com/ehaselwanter))
 - add standalone usage to mysql test [\#6](https://github.com/dev-sec/mysql-baseline/pull/6) ([ehaselwanter](https://github.com/ehaselwanter))
