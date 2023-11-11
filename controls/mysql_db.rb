@@ -51,13 +51,21 @@ control 'mysql-db-04' do
   end
 end
 
+# current versions of MySQL support roles, we don't check them at the moment.
+
+if command("mysql -u#{user} -p#{pass} -sN -e 'SELECT COUNT(1) FROM information_schema.COLUMNS  WHERE TABLE_SCHEMA = \"mysql\" AND TABLE_NAME = \"user\" AND COLUMN_NAME = \"is_role\"'").stdout.strip == '0'
+  role_filter = ''
+else
+  role_filter = 'AND CONVERT(is_role USING utf8) = "N"'
+end
+
 # MySQL 5.7.6 dropped the "password" column in the mysql.user table
 # so we have to check if it's there before we check if a password is empty
 control 'mysql-db-05' do
   impact 1.0
   title 'default passwords must be changed'
   only_if { command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from information_schema.columns where table_name=\"user\" and table_schema=\"mysql\" and column_name=\"password\";'").stdout.strip == '1' }
-  describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where (length(password)=0 or password=\"\") and (length(authentication_string)=0 or authentication_string=\"\") and not (user=\"mariadb.sys\" and host=\"localhost\");'") do
+  describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where (length(password)=0 or password=\"\") and (length(authentication_string)=0 or authentication_string=\"\") and not (user=\"mariadb.sys\" and host=\"localhost\") #{role_filter};'") do
     its(:stdout) { should match(/^0/) }
   end
 end
@@ -68,7 +76,7 @@ control 'mysql-db-05b' do
   impact 1.0
   title 'default passwords must be changed'
   only_if { command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from information_schema.columns where table_name=\"user\" and table_schema=\"mysql\" and column_name=\"password\";'").stdout.strip == '0' }
-  describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where length(authentication_string)=0 or authentication_string=\"\" and not (user=\"mariadb.sys\" and host=\"localhost\");'") do
+  describe command("mysql -u#{user} -p#{pass} -sN -e 'select count(*) from mysql.user where length(authentication_string)=0 or authentication_string=\"\" and not (user=\"mariadb.sys\" and host=\"localhost\") #{role_filter};'") do
     its(:stdout) { should match(/^0/) }
   end
 end
