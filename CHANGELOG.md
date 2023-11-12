@@ -1,8 +1,12 @@
 # Changelog
 
-## [5.0.1](https://github.com/dev-sec/mysql-baseline/tree/5.0.1) (2023-05-02)
+## [5.1.0](https://github.com/dev-sec/mysql-baseline/tree/5.1.0) (2023-11-12)
 
-[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/5.0.0...5.0.1)
+[Full Changelog](https://github.com/dev-sec/mysql-baseline/compare/5.0.0...5.1.0)
+
+**Implemented enhancements:**
+
+- add filter for MySQL roles [\#82](https://github.com/dev-sec/mysql-baseline/pull/82) ([schurzi](https://github.com/schurzi))
 
 **Merged pull requests:**
 
